@@ -1,10 +1,7 @@
-// Issuable Interface
 interface Issuable {
     void issueItem();
     void returnItem();
 }
-
-// Abstract Parent Class
 abstract class LibraryItem {
     protected String title;
     protected String itemId;
@@ -15,8 +12,6 @@ abstract class LibraryItem {
         this.itemId = itemId;
         this.isIssued = false;
     }
-
-    // Getters and Setters (Encapsulation)
     public String getTitle() {
         return title;
     }
@@ -44,12 +39,8 @@ abstract class LibraryItem {
     public void displayInfo() {
         System.out.println("ID: " + itemId + " | Title: " + title + " | Issued: " + isIssued);
     }
-
-    // Abstract method for polymorphism
     public abstract double calculateFine(int daysLate);
 }
-
-// Subclass: Book
 class Book extends LibraryItem implements Issuable {
     private static final double FINE_PER_DAY = 5.0;
 
@@ -87,8 +78,6 @@ class Book extends LibraryItem implements Issuable {
         return "Item: " + title + " (Book)";
     }
 }
-
-// Subclass: Magazine
 class Magazine extends LibraryItem implements Issuable {
     private static final double FINE_PER_DAY = 2.0;
 
@@ -126,8 +115,6 @@ class Magazine extends LibraryItem implements Issuable {
         return "Item: " + title + " (Magazine)";
     }
 }
-
-// Main Class
 public class libmanagement {
     public static void main(String[] args) {
         // Instantiate 2 Books and 2 Magazines
@@ -135,11 +122,8 @@ public class libmanagement {
         LibraryItem mag1 = new Magazine("National Geographic", "M201");
         LibraryItem book2 = new Book("Clean Code", "B102");
         LibraryItem mag2 = new Magazine("Time Magazine", "M202");
-
-        // Polymorphic Array
         LibraryItem[] items = { book1, mag1, book2, mag2 };
 
-        // Demonstrate issuing items
         System.out.println("=== Issuing Items ===");
         for (LibraryItem item : items) {
             if (item instanceof Issuable) {
